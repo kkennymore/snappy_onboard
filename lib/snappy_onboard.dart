@@ -119,6 +119,7 @@ class SnappyOnboardState extends State<SnappyOnboard> {
     return Scaffold(
       backgroundColor: widget.backgroundColor,
       body: Container(
+        height: MediaQuery.of(context).size.height,
         alignment: Alignment.center,
         padding: const EdgeInsets.only(left: 25, right: 25),
         child: Column(
@@ -142,30 +143,38 @@ class SnappyOnboardState extends State<SnappyOnboard> {
                 imageBoxBorderColor: widget.imageBoxBorderColor,
                 imageBoxBorderStyle: widget.imageBoxBorderStyle,
                 imageBoxBorderWidth: widget.imageBoxBorderWidth,
-                imageHeight: widget.imageBoxHeight - (MediaQuery.of(context).size.height - widget.imageBoxHeight)/2,
+                imageHeight: widget.imageBoxHeight -
+                    (MediaQuery.of(context).size.height -
+                            widget.imageBoxHeight) /
+                        4,
                 imageWidth: widget.imageBoxWidth,
                 boxBorderRadius: widget.boxBorderRadius,
               ),
             ),
             // the controls
-            Container(
-              height: 100,
-              alignment: Alignment.bottomCenter,
-              padding: const EdgeInsets.only(),
-              child: SnappyOnboardingControls(
-                items: widget.items,
-                animations: widget.controlsAnimations,
-                animationDuration: widget.animationDuration,
-                backArrow: widget.backArrow,
-                forwardArrow: widget.forwardArrow,
-                controlsTextColor: widget.controlsTextColor,
-                getStartedText: widget.getStartedText,
-                skipText: widget.skipText,
-                currentIndex: _currentIndex,
-                onCompleted: widget.onCompleted,
-                onNext: _onNext,
-                onPrev: _onPrev,
-                onSkip: _onSkip,
+            Positioned(
+              bottom: 30,
+              left: 16,
+              right: 16,
+              child: Container(
+                height: 100,
+                alignment: Alignment.bottomCenter,
+                padding: const EdgeInsets.only(),
+                child: SnappyOnboardingControls(
+                  items: widget.items,
+                  animations: widget.controlsAnimations,
+                  animationDuration: widget.animationDuration,
+                  backArrow: widget.backArrow,
+                  forwardArrow: widget.forwardArrow,
+                  controlsTextColor: widget.controlsTextColor,
+                  getStartedText: widget.getStartedText,
+                  skipText: widget.skipText,
+                  currentIndex: _currentIndex,
+                  onCompleted: widget.onCompleted,
+                  onNext: _onNext,
+                  onPrev: _onPrev,
+                  onSkip: _onSkip,
+                ),
               ),
             ),
           ],

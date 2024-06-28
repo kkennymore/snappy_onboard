@@ -42,11 +42,7 @@ class SnappyOnboardingControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-        bottom: 30,
-        left: 16,
-        right: 16,
-        child: AnimateEase(
+    return AnimateEase(
           animate: animations!,
           duration: animationDuration!,
           isVisibleChek: isVisibleChek,
@@ -113,7 +109,7 @@ class SnappyOnboardingControls extends StatelessWidget {
                 ),
             ],
           ),
-        ),
+        
     );
   }
 }
