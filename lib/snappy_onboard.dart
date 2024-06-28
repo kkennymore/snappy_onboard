@@ -126,8 +126,7 @@ class SnappyOnboardState extends State<SnappyOnboard> {
         child: Stack(
           children: [
             // slide images and texts
-            Expanded(
-              child: SnappyOnboardDataBuilder(
+            SnappyOnboardDataBuilder(
                 pageController: _pageController,
                 onPageChanged: _onPageChanged,
                 backgroundColor: widget.backgroundColor,
@@ -148,7 +147,6 @@ class SnappyOnboardState extends State<SnappyOnboard> {
                 boxBorderRadius: widget.boxBorderRadius,
                 imageFit: widget.imageFit,
               ),
-            ),
             
             // the controls
             Positioned(
