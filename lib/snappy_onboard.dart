@@ -13,7 +13,7 @@ class SnappyOnboard extends StatefulWidget {
   final Color backgroundColor;
   final AnimateEaseType animations;
   final AnimateEaseType controlsAnimations;
-  final Duration animationDuration;
+  final Duration controlsAnimationDuration;
   final String skipText;
   final String getStartedText;
   final Color controlsTextColor;
@@ -35,13 +35,14 @@ class SnappyOnboard extends StatefulWidget {
   final double imageBoxBorderWidth;
   final double boxBorderRadius;
   final BoxFit imageFit;
+  final int? animationDuration;
 
   const SnappyOnboard({
     super.key,
     this.backgroundColor = Colors.white70,
     this.animations = AnimateEaseType.slideInLeftFade,
     this.controlsAnimations = AnimateEaseType.bounceIn,
-    this.animationDuration = const Duration(seconds: 1),
+    this.controlsAnimationDuration = const Duration(seconds: 1),
     this.skipText = "Skip",
     this.getStartedText = "Get Started",
     this.controlsTextColor = Colors.black,
@@ -62,6 +63,7 @@ class SnappyOnboard extends StatefulWidget {
     this.imageBoxBorderWidth = 1.0,
     this.boxBorderRadius = 10.0,
     this.imageFit = BoxFit.cover,
+    this.animationDuration = 2,
   });
   @override
   SnappyOnboardState createState() => SnappyOnboardState();
@@ -146,6 +148,8 @@ class SnappyOnboardState extends State<SnappyOnboard> {
                 imageWidth: widget.imageBoxWidth,
                 boxBorderRadius: widget.boxBorderRadius,
                 imageFit: widget.imageFit,
+                animations: widget.animations,
+                duration: widget.animationDuration,
               ),
             
             // the controls
@@ -160,7 +164,7 @@ class SnappyOnboardState extends State<SnappyOnboard> {
                 child: SnappyOnboardingControls(
                   items: widget.items,
                   animations: widget.controlsAnimations,
-                  animationDuration: widget.animationDuration,
+                  animationDuration: widget.controlsAnimationDuration,
                   backArrow: widget.backArrow,
                   forwardArrow: widget.forwardArrow,
                   controlsTextColor: widget.controlsTextColor,

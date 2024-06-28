@@ -23,6 +23,8 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
   final Color? imageBoxBackgroundColor;
   final double? boxBorderRadius;
   final BoxFit? imageFit;
+  final AnimateEaseType? animations;
+  final int? duration;
 
   const SnappyOnboardDataBuilder({
     super.key,
@@ -45,6 +47,8 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
     this.imageBoxBackgroundColor,
     this.boxBorderRadius,
     this.imageFit,
+    this.animations,
+    this.duration,
   });
 
   @override
@@ -89,12 +93,14 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                       loadingBuilder: (context, child, loadingProgress) {
                         if (loadingProgress == null) {
                           return AnimateEase(
-                            duration: const Duration(seconds: 2),
+                            animate: animations!,
+                            duration:  Duration(seconds: duration!),
                             child: child,
                           );
                         } else {
                           return AnimateEase(
-                            duration: const Duration(seconds: 2),
+                            duration:  Duration(seconds: duration!),
+                            animate: animations!,
                             child: SizedBox(
                               height: 20.0,
                               width: 20.0,
@@ -107,7 +113,8 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                       },
                       errorBuilder: (context, child, error) {
                         return AnimateEase(
-                          duration: const Duration(seconds: 2),
+                          animate: animations!,
+                          duration:  Duration(seconds: duration!),
                           child: CircularProgressIndicator(
                             color: imagePreloadIndicatorColors,
                           ),
@@ -122,7 +129,8 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                     color: backgroundColor,
                     child: AnimateEase(
                       isVisibleChek: isVisibleChek,
-                      duration: const Duration(seconds: 2),
+                      duration:  Duration(seconds: duration!),
+                      animate: animations!,
                       child: Image.asset(
                         height: imageHeight,
                         width: imageWidth,
@@ -130,7 +138,7 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                         fit: imageFit,
                         errorBuilder: (context, child, error) {
                           return AnimateEase(
-                            duration: const Duration(seconds: 2),
+                            duration:  Duration(seconds: duration!),
                             child: CircularProgressIndicator(
                               color: imagePreloadIndicatorColors,
                             ),
@@ -141,8 +149,8 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                   ),
                 const SizedBox(height: 30),
                 AnimateEase(
-                  animate: AnimateEaseType.translateInRight,
-                  duration: const Duration(seconds: 1),
+                  animate: animations!,
+                  duration:  Duration(seconds: duration! - 1),
                   child: Text(
                     items![index].title!,
                     textAlign: TextAlign.center,
@@ -155,8 +163,8 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 AnimateEase(
-                  animate: AnimateEaseType.translateInRight,
-                  duration: const Duration(seconds: 2),
+                  animate: animations!,
+                  duration:  Duration(seconds: duration! + 1),
                   child: Text(
                     items![index].subtitle!,
                     textAlign: TextAlign.center,
@@ -168,8 +176,8 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 AnimateEase(
-                  animate: AnimateEaseType.fadeIn,
-                  duration: const Duration(seconds: 4),
+                  animate: animations!,
+                  duration:  Duration(seconds: duration! + 2),
                   child: Text(items![index].body!,
                       textAlign: TextAlign.center,
                       style: TextStyle(
