@@ -12,9 +12,6 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
   final Color? textTitleColor;
   final Color? textSubTitleColor;
   final Color? textBodyColor;
-  final String? titleText;
-  final String? subTitleText;
-  final String? bodyText;
 
   const SnappyOnboardDataBuilder({
     super.key,
@@ -26,9 +23,6 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
     this.textTitleColor,
     this.textSubTitleColor,
     this.textBodyColor,
-    this.titleText,
-    this.subTitleText,
-    this.bodyText,
   });
 
   @override
@@ -113,7 +107,7 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                   animate: AnimateEaseType.translateInRight,
                   duration: const Duration(seconds: 1),
                   child: Text(
-                    titleText.toString(),
+                    items![index].title!,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: textTitleColor,
@@ -127,7 +121,7 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                   animate: AnimateEaseType.translateInRight,
                   duration: const Duration(seconds: 2),
                   child: Text(
-                    subTitleText.toString(),
+                    items![index].subtitle!,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,
@@ -139,7 +133,7 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                 AnimateEase(
                   animate: AnimateEaseType.fadeIn,
                   duration: const Duration(seconds: 4),
-                  child: Text(bodyText.toString(),
+                  child: Text(items![index].body!,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 14,

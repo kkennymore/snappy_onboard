@@ -23,9 +23,6 @@ class SnappyOnboard extends StatefulWidget {
   final Color? titleTextColor;
   final Color? subTitleTextColor;
   final Color? bodyTextColor;
-  final String? titleText;
-  final String? subTitleText;
-  final String? bodyText;
 
   const SnappyOnboard({
     super.key, 
@@ -43,9 +40,6 @@ class SnappyOnboard extends StatefulWidget {
     this.titleTextColor = Colors.black,
     this.subTitleTextColor = Colors.black12,
     this.bodyTextColor = Colors.black54,
-    this.titleText,
-    this.subTitleText,
-    this.bodyText
     });
   @override
   SnappyOnboardState createState() => SnappyOnboardState();
@@ -118,9 +112,6 @@ class SnappyOnboardState extends State<SnappyOnboard> {
               backgroundColor: widget.backgroundColor,
               items: widget.items,
               imagePreloadIndicatorColors: widget.imagePreloadIndicatorColors,
-              titleText: widget.titleText,
-              subTitleText: widget.subTitleText,
-              bodyText: widget.bodyText,
               textTitleColor: widget.titleTextColor,
               textSubTitleColor: widget.subTitleTextColor,
               textBodyColor: widget.bodyTextColor,
