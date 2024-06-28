@@ -17,6 +17,7 @@ class SnappyOnboardingControls extends StatelessWidget {
   final void Function()? onCompleted;
   final String? getStartedText;
   final String? skipText;
+  final bool? isVisibleChek;
 
   final List<SnappyOnboardingItemModel>? items;
 
@@ -36,6 +37,7 @@ class SnappyOnboardingControls extends StatelessWidget {
     this.items,
     this.getStartedText,
     this.skipText,
+    this.isVisibleChek,
   });
 
   @override
@@ -47,6 +49,7 @@ class SnappyOnboardingControls extends StatelessWidget {
         child: AnimateEase(
           animate: animations!,
           duration: animationDuration!,
+          isVisibleChek: isVisibleChek,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

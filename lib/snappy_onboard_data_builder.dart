@@ -12,6 +12,15 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
   final Color? textTitleColor;
   final Color? textSubTitleColor;
   final Color? textBodyColor;
+  final bool? isVisibleChek;
+  final double? imageHeight;
+  final double? imageWidth;
+  final double? imageBoxHeight;
+  final double? imageBoxWidth;
+  final Color? imageBoxBorderColor;
+  final BorderStyle? imageBoxBorderStyle;
+  final double? imageBoxBorderWidth;
+  final Color? imageBoxBackgroundColor;
 
   const SnappyOnboardDataBuilder({
     super.key,
@@ -23,11 +32,31 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
     this.textTitleColor,
     this.textSubTitleColor,
     this.textBodyColor,
+    this.isVisibleChek,
+    this.imageHeight,
+    this.imageWidth,
+    this.imageBoxWidth,
+    this.imageBoxHeight,
+    this.imageBoxBorderColor,
+    this.imageBoxBorderStyle,
+    this.imageBoxBorderWidth,
+    this.imageBoxBackgroundColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.center,
+      height: imageBoxHeight,
+      width: imageBoxWidth,
+      decoration: BoxDecoration(
+        color: imageBoxBackgroundColor,
+        border: Border.all(
+          color: imageBoxBorderColor!,
+          style: imageBoxBorderStyle!,
+          width: imageBoxBorderWidth!,
+        ),
+      ),
       padding: const EdgeInsets.only(),
       child: PageView.builder(
         controller: pageController,
@@ -44,11 +73,12 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                 const SizedBox(height: 20),
                 if (item.image!.startsWith('http'))
                   Container(
+                    height: imageHeight,
+                    width: imageWidth,
                     color: backgroundColor,
-                    constraints: BoxConstraints(
-                        minHeight: MediaQuery.of(context).size.height / 2.8,
-                        minWidth: MediaQuery.of(context).size.height - 60),
                     child: Image.network(
+                      height: imageHeight,
+                      width: imageWidth,
                       item.image!,
                       fit: BoxFit.cover,
                       loadingBuilder: (context, child, loadingProgress) {
@@ -82,13 +112,15 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                   )
                 else
                   Container(
+                    height: imageHeight,
+                    width: imageWidth,
                     color: backgroundColor,
-                    constraints: BoxConstraints(
-                      minHeight: MediaQuery.of(context).size.height / 2.8,
-                    ),
                     child: AnimateEase(
+                      isVisibleChek: isVisibleChek,
                       duration: const Duration(seconds: 2),
                       child: Image.asset(
+                        height: imageHeight,
+                        width: imageWidth,
                         item.image!,
                         fit: BoxFit.cover,
                         errorBuilder: (context, child, error) {
@@ -138,7 +170,8 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 14,
                         color: textBodyColor,
-                      )),
+                      ),
+                  ),
                 ),
               ],
             ),

@@ -12,6 +12,7 @@ export 'package:snappy_onboard/snappy_onboarding_item_model.dart';
 class SnappyOnboard extends StatefulWidget {
   final Color backgroundColor;
   final AnimateEaseType animations;
+  final AnimateEaseType controlsAnimations;
   final Duration animationDuration;
   final String skipText;
   final String getStartedText;
@@ -25,10 +26,21 @@ class SnappyOnboard extends StatefulWidget {
   final Color? subTitleTextColor;
   final Color? bodyTextColor;
 
+  final bool? isVisibleChek;
+  final double imageBoxHeight;
+  final double imageBoxWidth;
+  final Color imageBoxBackgroundColor;
+  final Color imageBoxBorderColor;
+  final BorderStyle imageBoxBorderStyle;
+  final double imageBoxBorderWidth;
+  final double imageHeight;
+  final double imageWidth;
+
   const SnappyOnboard({
     super.key,
     this.backgroundColor = Colors.white70,
     this.animations = AnimateEaseType.slideInLeftFade,
+    this.controlsAnimations = AnimateEaseType.bounceIn,
     this.animationDuration = const Duration(seconds: 1),
     this.skipText = "Skip",
     this.getStartedText = "Get Started",
@@ -41,6 +53,15 @@ class SnappyOnboard extends StatefulWidget {
     this.titleTextColor = Colors.black,
     this.subTitleTextColor = Colors.black12,
     this.bodyTextColor = Colors.black54,
+    this.isVisibleChek = false,
+    this.imageBoxHeight = 400.0,
+    this.imageBoxWidth = 400.0,
+    this.imageBoxBackgroundColor = Colors.white70,
+    this.imageBoxBorderColor = Colors.white38,
+    this.imageBoxBorderStyle = BorderStyle.solid,
+    this.imageBoxBorderWidth = 1.0,
+    this.imageHeight = 300.0,
+    this.imageWidth = 300.0,
   });
   @override
   SnappyOnboardState createState() => SnappyOnboardState();
@@ -102,7 +123,7 @@ class SnappyOnboardState extends State<SnappyOnboard> {
       body: Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.only(left: 25, right: 25),
-        child: Stack(
+        child: Column(
           children: [
             // slide images and texts
             Container(
@@ -116,6 +137,15 @@ class SnappyOnboardState extends State<SnappyOnboard> {
                 textTitleColor: widget.titleTextColor,
                 textSubTitleColor: widget.subTitleTextColor,
                 textBodyColor: widget.bodyTextColor,
+                isVisibleChek: widget.isVisibleChek,
+                imageBoxHeight: widget.imageBoxHeight,
+                imageBoxWidth: widget.imageBoxWidth,
+                imageBoxBackgroundColor: widget.imageBoxBackgroundColor,
+                imageBoxBorderColor: widget.imageBoxBorderColor,
+                imageBoxBorderStyle: widget.imageBoxBorderStyle,
+                imageBoxBorderWidth: widget.imageBoxBorderWidth,
+                imageHeight: widget.imageHeight,
+                imageWidth: widget.imageWidth,
               ),
             ),
             // the controls
@@ -125,7 +155,7 @@ class SnappyOnboardState extends State<SnappyOnboard> {
               padding: const EdgeInsets.only(),
               child: SnappyOnboardingControls(
                 items: widget.items,
-                animations: widget.animations,
+                animations: widget.controlsAnimations,
                 animationDuration: widget.animationDuration,
                 backArrow: widget.backArrow,
                 forwardArrow: widget.forwardArrow,
