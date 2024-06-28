@@ -120,13 +120,11 @@ class SnappyOnboardState extends State<SnappyOnboard> {
       backgroundColor: widget.backgroundColor,
       body: Container(
         height: MediaQuery.of(context).size.height,
-        alignment: Alignment.center,
         padding: const EdgeInsets.only(left: 25, right: 25),
         child: Stack(
           children: [
             // slide images and texts
-            Container(
-              padding: const EdgeInsets.only(),
+            Expanded(
               child: SnappyOnboardDataBuilder(
                 pageController: _pageController,
                 onPageChanged: _onPageChanged,
@@ -149,7 +147,6 @@ class SnappyOnboardState extends State<SnappyOnboard> {
               ),
             ),
             // the controls
-            const Spacer(),
             Positioned(
               bottom: 30,
               left: 16,
