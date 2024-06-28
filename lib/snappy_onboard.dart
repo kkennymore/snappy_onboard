@@ -142,7 +142,7 @@ class SnappyOnboardState extends State<SnappyOnboard> {
                 imageBoxBorderColor: widget.imageBoxBorderColor,
                 imageBoxBorderStyle: widget.imageBoxBorderStyle,
                 imageBoxBorderWidth: widget.imageBoxBorderWidth,
-                imageHeight: widget.imageBoxHeight - (MediaQuery.of(context).size.height / 10.0),
+                imageHeight: widget.imageBoxHeight - (MediaQuery.of(context).size.height - widget.imageBoxHeight)/2,
                 imageWidth: widget.imageBoxWidth,
                 boxBorderRadius: widget.boxBorderRadius,
               ),
