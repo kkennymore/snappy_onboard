@@ -21,6 +21,7 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
   final BorderStyle? imageBoxBorderStyle;
   final double? imageBoxBorderWidth;
   final Color? imageBoxBackgroundColor;
+  final double? boxBorderRadius;
 
   const SnappyOnboardDataBuilder({
     super.key,
@@ -41,6 +42,7 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
     this.imageBoxBorderStyle,
     this.imageBoxBorderWidth,
     this.imageBoxBackgroundColor,
+    this.boxBorderRadius,
   });
 
   @override
@@ -50,6 +52,7 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
       height: imageBoxHeight,
       width: imageBoxWidth,
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(boxBorderRadius!) ),
         color: imageBoxBackgroundColor,
         border: Border.all(
           color: imageBoxBorderColor!,

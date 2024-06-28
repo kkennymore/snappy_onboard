@@ -33,8 +33,7 @@ class SnappyOnboard extends StatefulWidget {
   final Color imageBoxBorderColor;
   final BorderStyle imageBoxBorderStyle;
   final double imageBoxBorderWidth;
-  final double imageHeight;
-  final double imageWidth;
+  final double boxBorderRadius;
 
   const SnappyOnboard({
     super.key,
@@ -60,8 +59,7 @@ class SnappyOnboard extends StatefulWidget {
     this.imageBoxBorderColor = Colors.white38,
     this.imageBoxBorderStyle = BorderStyle.solid,
     this.imageBoxBorderWidth = 1.0,
-    this.imageHeight = 300.0,
-    this.imageWidth = 300.0,
+    this.boxBorderRadius = 10.0,
   });
   @override
   SnappyOnboardState createState() => SnappyOnboardState();
@@ -144,8 +142,9 @@ class SnappyOnboardState extends State<SnappyOnboard> {
                 imageBoxBorderColor: widget.imageBoxBorderColor,
                 imageBoxBorderStyle: widget.imageBoxBorderStyle,
                 imageBoxBorderWidth: widget.imageBoxBorderWidth,
-                imageHeight: widget.imageHeight,
-                imageWidth: widget.imageWidth,
+                imageHeight: widget.imageBoxHeight - (MediaQuery.of(context).size.height / 10.0),
+                imageWidth: widget.imageBoxWidth,
+                boxBorderRadius: widget.boxBorderRadius,
               ),
             ),
             // the controls
