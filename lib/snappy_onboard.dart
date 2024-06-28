@@ -53,7 +53,7 @@ class SnappyOnboard extends StatefulWidget {
     this.subTitleTextColor = Colors.black12,
     this.bodyTextColor = Colors.black54,
     this.isVisibleChek = false,
-    this.imageBoxHeight = 400.0,
+    this.imageBoxHeight = 500.0,
     this.imageBoxWidth = 400.0,
     this.imageBoxBackgroundColor = Colors.white70,
     this.imageBoxBorderColor = Colors.white38,
@@ -149,6 +149,7 @@ class SnappyOnboardState extends State<SnappyOnboard> {
               ),
             ),
             // the controls
+            const Spacer(),
             Positioned(
               bottom: 30,
               left: 16,
