@@ -122,7 +122,7 @@ class SnappyOnboardState extends State<SnappyOnboard> {
         height: MediaQuery.of(context).size.height,
         alignment: Alignment.center,
         padding: const EdgeInsets.only(left: 25, right: 25),
-        child: Column(
+        child: Stack(
           children: [
             // slide images and texts
             Container(
@@ -143,10 +143,7 @@ class SnappyOnboardState extends State<SnappyOnboard> {
                 imageBoxBorderColor: widget.imageBoxBorderColor,
                 imageBoxBorderStyle: widget.imageBoxBorderStyle,
                 imageBoxBorderWidth: widget.imageBoxBorderWidth,
-                imageHeight: widget.imageBoxHeight -
-                    (MediaQuery.of(context).size.height -
-                            widget.imageBoxHeight) /
-                        4,
+                imageHeight: widget.imageBoxHeight/2.0,
                 imageWidth: widget.imageBoxWidth,
                 boxBorderRadius: widget.boxBorderRadius,
               ),
