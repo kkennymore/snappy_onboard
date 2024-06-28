@@ -22,6 +22,7 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
   final double? imageBoxBorderWidth;
   final Color? imageBoxBackgroundColor;
   final double? boxBorderRadius;
+  final BoxFit? imageFit;
 
   const SnappyOnboardDataBuilder({
     super.key,
@@ -43,6 +44,7 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
     this.imageBoxBorderWidth,
     this.imageBoxBackgroundColor,
     this.boxBorderRadius,
+    this.imageFit,
   });
 
   @override
@@ -83,7 +85,7 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                       height: imageHeight,
                       width: imageWidth,
                       item.image!,
-                      fit: BoxFit.cover,
+                      fit: imageFit,
                       loadingBuilder: (context, child, loadingProgress) {
                         if (loadingProgress == null) {
                           return AnimateEase(
@@ -125,7 +127,7 @@ class SnappyOnboardDataBuilder extends StatelessWidget {
                         height: imageHeight,
                         width: imageWidth,
                         item.image!,
-                        fit: BoxFit.cover,
+                        fit: imageFit,
                         errorBuilder: (context, child, error) {
                           return AnimateEase(
                             duration: const Duration(seconds: 2),
