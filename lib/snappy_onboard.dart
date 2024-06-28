@@ -1,9 +1,10 @@
 library eazy_onboarding;
-import 'package:animate_ease/animate_ease.dart';
+
 import 'package:animate_ease/animate_ease_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:snappy_onboard/snappy_onboard_data_builder.dart';
+import 'package:snappy_onboard/snappy_onboarding_controls.dart';
 import 'package:snappy_onboard/snappy_onboarding_item_model.dart';
 export 'package:animate_ease/animate_ease_type.dart';
 export 'package:snappy_onboard/snappy_onboarding_item_model.dart';
@@ -11,7 +12,7 @@ export 'package:snappy_onboard/snappy_onboarding_item_model.dart';
 class SnappyOnboard extends StatefulWidget {
   final Color backgroundColor;
   final AnimateEaseType animations;
-  final  Duration animationDuration;
+  final Duration animationDuration;
   final String skipText;
   final String getStartedText;
   final Color controlsTextColor;
@@ -25,7 +26,7 @@ class SnappyOnboard extends StatefulWidget {
   final Color? bodyTextColor;
 
   const SnappyOnboard({
-    super.key, 
+    super.key,
     this.backgroundColor = Colors.white70,
     this.animations = AnimateEaseType.slideInLeftFade,
     this.animationDuration = const Duration(seconds: 1),
@@ -40,7 +41,7 @@ class SnappyOnboard extends StatefulWidget {
     this.titleTextColor = Colors.black,
     this.subTitleTextColor = Colors.black12,
     this.bodyTextColor = Colors.black54,
-    });
+  });
   @override
   SnappyOnboardState createState() => SnappyOnboardState();
 }
@@ -48,7 +49,6 @@ class SnappyOnboard extends StatefulWidget {
 class SnappyOnboardState extends State<SnappyOnboard> {
   final PageController _pageController = PageController();
   int _currentIndex = 0;
-  
 
   @override
   void initState() {
@@ -60,8 +60,6 @@ class SnappyOnboardState extends State<SnappyOnboard> {
     _pageController.dispose();
     super.dispose();
   }
-
-
 
   void _onPageChanged(int index) {
     setState(() {
@@ -98,7 +96,7 @@ class SnappyOnboardState extends State<SnappyOnboard> {
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: isDarkTheme ? Brightness.light : Brightness.dark,
     ));
-    
+
     return Scaffold(
       backgroundColor: widget.backgroundColor,
       body: Container(
@@ -106,87 +104,39 @@ class SnappyOnboardState extends State<SnappyOnboard> {
         padding: const EdgeInsets.only(left: 25, right: 25),
         child: Stack(
           children: [
-            SnappyOnboardDataBuilder(
-              pageController: _pageController,
-              onPageChanged: _onPageChanged,
-              backgroundColor: widget.backgroundColor,
-              items: widget.items,
-              imagePreloadIndicatorColors: widget.imagePreloadIndicatorColors,
-              textTitleColor: widget.titleTextColor,
-              textSubTitleColor: widget.subTitleTextColor,
-              textBodyColor: widget.bodyTextColor,
+            // slide images and texts
+            Container(
+              padding: const EdgeInsets.only(),
+              child: SnappyOnboardDataBuilder(
+                pageController: _pageController,
+                onPageChanged: _onPageChanged,
+                backgroundColor: widget.backgroundColor,
+                items: widget.items,
+                imagePreloadIndicatorColors: widget.imagePreloadIndicatorColors,
+                textTitleColor: widget.titleTextColor,
+                textSubTitleColor: widget.subTitleTextColor,
+                textBodyColor: widget.bodyTextColor,
+              ),
             ),
-            Positioned(
-              bottom: 30,
-              left: 16,
-              right: 16,
-              child: AnimateEase(
-                animate: widget.animations,
-                duration: widget.animationDuration,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    if (_currentIndex != widget.items!.length - 1)
-                      TextButton(
-                        onPressed: _onSkip,
-                        child: Text(
-                          widget.skipText,
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            color: widget.controlsTextColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    Row(
-                      children: List.generate(widget.items!.length, (index) {
-                        return Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                          width: _currentIndex == index ? 12.0 : 8.0,
-                          height: _currentIndex == index ? 12.0 : 8.0,
-                          decoration: BoxDecoration(
-                            color: _currentIndex == index
-                                ?
-                                widget.controlsTextColor
-                                : Colors.grey,
-                            shape: BoxShape.circle,
-                          ),
-                        );
-                      }),
-                    ),
-                    if (_currentIndex == widget.items!.length - 1)
-                      TextButton(
-                        onPressed: widget.onCompleted,
-                        child: Text(
-                           widget.getStartedText,
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            color:widget.controlsTextColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      )
-                    else
-                      Row(
-                        children: [
-                          IconButton(
-                            onPressed: _onPrev,
-                            icon: Icon(
-                              widget.backArrow,
-                              color: widget.controlsTextColor,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: _onNext,
-                            icon: Icon(
-                              widget.forwardArrow,
-                              color: widget.controlsTextColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                  ],
-                ),
+            // the controls
+            Container(
+              height: 100,
+              alignment: Alignment.bottomCenter,
+              padding: const EdgeInsets.only(),
+              child: SnappyOnboardingControls(
+                items: widget.items,
+                animations: widget.animations,
+                animationDuration: widget.animationDuration,
+                backArrow: widget.backArrow,
+                forwardArrow: widget.forwardArrow,
+                controlsTextColor: widget.controlsTextColor,
+                getStartedText: widget.getStartedText,
+                skipText: widget.skipText,
+                currentIndex: _currentIndex,
+                onCompleted: widget.onCompleted,
+                onNext: _onNext,
+                onPrev: _onPrev,
+                onSkip: _onSkip,
               ),
             ),
           ],
@@ -195,4 +145,3 @@ class SnappyOnboardState extends State<SnappyOnboard> {
     );
   }
 }
-
